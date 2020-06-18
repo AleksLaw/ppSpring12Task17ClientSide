@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+</head>
+<body>
+<div th:fragment="userList(editMode, title)">
+    <div class="container border bg-white px-0">
+        <h5 class="bg-light border p-3" th:text="${title}"></h5>
+<!--        <div class="px-3" th:unless="${#lists.isEmpty(users)}">-->
+            <table class="table table-striped" th:id="userTable">
+                <thead>
+                <tr>
+                    <th width="80">ID</th>
+                    <th width="120">First name</th>
+                    <th width="120">Last name</th>
+                    <th width="120">Age</th>
+                    <th width="120">Email</th>
+                    <th width="120">Role</th>
+                    <div th:if="${editMode}">
+                        <th width="60" >Edit</th>
+                        <th width="60" >Delete</th>
+                    </div>
+                </tr>
+                </thead>
+                <tbody>
+<!--                <tr th:each="user : ${users}" th:id="'userrow'+${user.id}">-->
+<!--                    <td th:text="${user.id}" th:id="'userid'+${user.id}"></td>-->
+<!--                    <td th:text="${user.firstName}" th:id="'userfirstName'+${user.id}"></td>-->
+<!--                    <td th:text="${user.lastName}" th:id="'userlastName'+${user.id}"></td>-->
+<!--                    <td th:text="${user.money}" th:id="'usermoney'+${user.id}"></td>-->
+<!--                    <td th:text="${user.login}" th:id="'userlogin'+${user.id}"></td>-->
+<!--                    <td th:text="${user.password}" th:id="'userpassword'+${user.id}" style="display:none;"></td>-->
+<!--                    <td th:id="'userroles'+${user.id}">-->
+<!--                        <span>-->
+<!--                            <div th:text="${#strings.listJoin(user.roles.![name], ' ')}" />-->
+<!--                        </span>-->
+<!--                    </td>-->
+<!--                    <div th:if="${editMode}">-->
+<!--                        <td>-->
+<!--&lt;!&ndash;                            <a class="btn btn-primary" th:href="@{'/admin/edituser/'+${user.id}+'/'}">Edit</a>&ndash;&gt;-->
+<!--                            <button type="button" th:attr="data-whatever=${user.id}" class="btn btn-primary" data-toggle="modal" data-target="#userModal">-->
+<!--                                Edit-->
+<!--                            </button>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            &lt;!&ndash;a class="btn btn-danger" th:href="@{'/admin/removeuser/'+${user.id}+'/'}">Delete</a&ndash;&gt;-->
+<!--                            <button type="button" th:attr="data-whatever=${user.id}" class="btn btn-danger" data-toggle="modal" data-target="#userModal">-->
+<!--                                Delete-->
+<!--                            </button>-->
+<!--                        </td>-->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="fragmentId" th:insert="/part/userForm ::userForm('changeMode')">
+                                            <!--Смотри соответствующий файл-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+<!--                    </div>-->
+<!--                </tr>-->
+                </tbody>
+            </table>
+<!--        </div>-->
+    </div>
+
+</div>
+</body>
+</html>

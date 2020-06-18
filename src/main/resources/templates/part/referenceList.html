@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Akira">
+    <title>Список ссылок для навигации</title>
+</head>
+<body>
+<div th:fragment="referenceList">
+    <div class="nav nav-pills flex-column">
+        <!-- админка видна только если есть соответствующие права.
+        Не стоит обольщаться, хакнув её сменив свойство - запрос все равно проходит
+        через секьюрность и хацкер будет послан-->
+        <a class="nav-link" href="/admin" id="adminRef">Admin</a>
+        <a class="nav-link" href="/user" id="userRef">User</a>
+    </div>
+</div>
+
+</body>
+</html>

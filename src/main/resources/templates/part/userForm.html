@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Akira">
+    <title>Форма для Создания\редактирования пользователя</title>
+</head>
+<body>
+<div th:fragment="userForm(mode)">
+    <div class="container border bg-white px-0">
+        <h5 class="bg-light border p-3" id="userFormTitle" th:text="${mode == 'create' ? 'Add new user' : ''}"></h5>
+        <form th:id="${mode == 'create'}? 'createForm'">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div th:classappend="${mode == 'create'}? 'col-4 col-offset-4'">
+                        <div th:if="${mode != 'create'}">
+                            <div class="form-group-sm text-center my-2">
+                                <label th:for="id" class="mb-0 font-weight-bold">ID</label>
+                                <input type="text" class="form-control readonly" th:id="id" th:name="id" >
+                            </div>
+                        </div>
+                        <div class="form-group-sm text-center my-2">
+                            <label th:for="firstName" class="mb-0 font-weight-bold">First Name</label>
+                            <input type="text" class="form-control" th:id="firstName" th:name="firstName" required placeholder="First Name">
+                        </div>
+                        <div class="form-group-sm text-center my-2">
+                            <label th:for="lastName" class="mb-0 font-weight-bold">Last Name</label>
+                            <input type="text" class="form-control" th:id="lastName" th:name="lastName" placeholder="Last Name">
+                        </div>
+                        <div class="form-group-sm text-center my-2">
+                            <label th:for="money" class="mb-0 font-weight-bold">Age</label>
+                            <input type="number" class="form-control" th:id="money" th:name="money" placeholder="Age">
+                        </div>
+                        <div class="form-group-sm text-center my-2">
+                            <label th:for="login" class="mb-0 font-weight-bold">Email</label>
+                            <input type="email" class="form-control" th:id="login" th:name="login" required placeholder="Email">
+                        </div>
+                        <div class="form-group-sm text-center my-2" th:id="passworddiv">
+                            <label th:for="password" class="mb-0 font-weight-bold">Password</label>
+                            <input type="password" class="form-control"  th:id="password" th:name="password" required  placeholder="Password">
+                        </div>
+                        <div class="form-group-sm text-center my-2">
+                            <label th:for="roles" class="mb-0 font-weight-bold">Role</label>
+                            <select class="form-control" multiple="true" th:id="roles" th:name="roles"  >  <!--th:size="${allRole.size()}"-->
+<!--                                <option th:each="role : ${allRole}" th:id="${role.name}" th:value="${role.name}" th:text="${role.name}" ></option>-->
+                            </select>
+                        </div>
+                        <div th:if="${mode == 'create'}">
+                            <div class="form-group-sm text-center my-2">
+                                <button type="submit" class="btn btn-success" id="someButtonId">
+                                    Add new User
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${mode != 'create'}">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="changeButton" class="btn" >
+                        <span> Edit </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
